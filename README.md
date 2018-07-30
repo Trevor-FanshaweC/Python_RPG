@@ -10,3 +10,5 @@ Alternative open the project in VS Code (needs the python plugins and choose you
 A little rough, but it's working... needs some improvement.
 
 Built with VSCode (which is awesome)
+
+Enjoy!

@@ -9,6 +9,8 @@ Alternatively, open the project in VS Code (needs the MS python plugins and you'
 
 A little rough, but it's working... needs some improvement => enemies need some logic for their magic; cash isn't really working properly and spell cost needs some tweaking. But it's getting there!
 
+Also needs some work on the formatting... text games don't look great
+
 Built with VSCode (which is awesome)
 
 Dependencies:

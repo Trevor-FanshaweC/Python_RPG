@@ -36,9 +36,9 @@ player3 = Person("Longo", 450, 40, 60, 80, player_magic, player_items, 800)
 
 players = [player1, player2, player3]
 
-enemy = Person("boogerface", 1200, 65, 45, 25, [], [], 0)
-enemy2 = Person("goober", 800, 60, 80, 20, [], [], 0)
-enemy3 = Person("gooberface", 800, 60, 80, 20, [], [], 0)
+enemy = Person("boogerface", 1200, 65, 45, 25, [fire, thunder, cure], [], 0)
+enemy2 = Person("goober", 800, 60, 80, 20, [fire, thunder, blizzard, meteor, cure], [], 0)
+enemy3 = Person("gooberface", 800, 60, 80, 20, [blizzard, thunder, cure], [], 0)
 print("Enemy hit points:", enemy.hp)
 
 enemies = [enemy, enemy2, enemy3]
@@ -151,18 +151,6 @@ while running:
             player.use_item(item.cost)
             print("\nYou have", player.get_cash(), "cash left")
 
-    for enemy in enemies:
-        enemy_choice = 1
-
-        target = random.randrange(0, 3)
-        #active_enemy = random.randrange(0, 3)
-
-        enemy_dmg = enemy.generate_damage()
-        players[target].take_damage(enemy_dmg)
-
-        print("Enemy attacks", players[target].name, "for",  enemy_dmg, "Player HP:", players[target].get_hp())
-        print("========================")
-
     defeated_enemies = 0
     defeated_players = 0
 
@@ -180,4 +168,30 @@ while running:
     elif defeated_players == 2:
         print(bcolors.FAIL + "You were defeated, yo!" + bcolors.ENDC)
         running = False
-  #running = False
+
+  # enemies attack
+    for enemy in enemies:
+        enemy_choice = random.randrange(0, 2)
+
+        target = random.randrange(0, len(players))
+        
+
+        if enemy_choice == 0:
+            enemy_dmg = enemy.generate_damage()
+            players[target].take_damage(enemy_dmg)
+
+            print(enemy.name, "attacks", players[target].name, "for",  enemy_dmg, "Player HP:", players[target].get_hp())
+
+        elif enemy_choice == 1: #they've chosen magic, we need to account for that
+            print('do some magic here')
+            magic = random.randrange(0, len(enemy.magic))
+
+            spell = enemy.magic[magic]
+
+            if spell.type == "white":
+                enemy.heal(spell.dmg)
+                print(enemy.name + " used a healing spell for " + str(spell.dmg) + " pts")
+            elif spell.type == "black":
+                spell_dmg = spell.generate_spell_damage()
+                players[target].take_damage(spell_dmg)
+                print(players[target].name + " took " + str(spell_dmg) + " pts of spell damage from the "+ spell.name + " spell!") 

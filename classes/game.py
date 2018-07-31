@@ -144,4 +144,4 @@ class Person:
 
 
         print("                  _________________________            __________")
-        print(self.name + ": " + str(self.hp) + "/" + str(self.max_hp) + "   |" + hp_bar + "|    " + str(self.mp) + "/" + str(self.max_mp) + " |" + mp_bar + "|" )
+        print(self.name + ": " + str(self.hp) + "/" + str(self.max_hp) + "   |" + hp_bar + "|    " + str(self.mp) + "/" + str(self.max_mp) + " |" + mp_bar + "|  Coin: " + str(self.get_cash())  )
